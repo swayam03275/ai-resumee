@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd frontend/resume && npm install && npm run build"
-  },
-  "workspaces": [
-    "backend",
-    "frontend/resume"
-  ]
+    "build": "npm install --prefix frontend/resume && npm run build --prefix frontend/resume"
+  }
 }

@@ -1,22 +1,33 @@
 {
-  "buildCommand": "cd frontend/resume && npm install && npm run build",
-  "outputDirectory": "frontend/resume/dist",
-  "installCommand": "npm install --prefix frontend/resume",
-  "framework": "vite",
-  "functions": {
-    "api/**/*.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/server"
+      "src": "frontend/resume/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     },
     {
-      "source": "/uploads/:path*",
-      "destination": "/api/server"
+      "src": "api/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/server.js"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/api/server.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/resume/dist/index.html"
     }
   ]
 }
