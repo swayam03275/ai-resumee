@@ -9,7 +9,7 @@
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend/resume && npm run dev",
     "build": "cd frontend/resume && npm install && npm run build",
-    "vercel-build": "npm install --prefix frontend/resume && npm run build --prefix frontend/resume && cp -r frontend/resume/dist public || xcopy /E /I /Y frontend\\resume\\dist public"
+    "vercel-build": "cd frontend/resume && npm install && npm run build"
   },
   "workspaces": [
     "backend",
