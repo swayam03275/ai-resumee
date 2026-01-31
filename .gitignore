@@ -1,0 +1,37 @@
+# Root ignores
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+.DS_Store
+Thumbs.db
+
+# Env files (never commit real secrets)
+.env
+.env.*
+*.env
+*.env.*
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Backend specific
+backend/.env
+backend/.env.*
+backend/node_modules/
+backend/coverage/
+
+# Frontend specific
+frontend/resume/node_modules/
+frontend/resume/dist/
+frontend/resume/.env
+frontend/resume/.env.*
+
+# Allow example envs (must be last to override above rules)
+!.env.example
+!*.env.example
+!backend/.env.example
+!frontend/resume/.env.example
