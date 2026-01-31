@@ -21,15 +21,10 @@
     {
       "source": "/uploads/(.*)",
       "destination": "/api/index.js"
-    }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
     },
     {
-      "src": "/(.*)",
-      "dest": "/frontend/resume/dist/$1"
+      "source": "/(.*)",
+      "destination": "/frontend/resume/dist/index.html"
     }
   ]
 }
