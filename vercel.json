@@ -1,18 +1,7 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "frontend/resume/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
-    }
-  ],
+  "buildCommand": "cd frontend/resume && npm install && npm run build",
+  "outputDirectory": "frontend/resume/dist",
+  "framework": "vite",
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -24,10 +13,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend/resume/index.html"
+      "destination": "/index.html"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
