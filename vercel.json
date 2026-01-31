@@ -1,13 +1,22 @@
 {
+  "buildCommand": "cd frontend/resume && npm install && npm run build",
+  "outputDirectory": "frontend/resume/dist",
+  "installCommand": "npm install --prefix frontend/resume",
+  "framework": "vite",
+  "functions": {
+    "api/**/*.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/:path*",
       "destination": "/api/server"
     },
     {
-      "source": "/uploads/(.*)",
+      "source": "/uploads/:path*",
       "destination": "/api/server"
     }
-  ],
-  "outputDirectory": "dist"
+  ]
 }
