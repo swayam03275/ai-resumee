@@ -27,7 +27,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/resume/dist/index.html"
+      "dest": "/frontend/resume/$1"
     }
   ]
 }
