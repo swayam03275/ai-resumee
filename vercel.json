@@ -1,15 +1,12 @@
 {
-  "buildCommand": "cd frontend/resume && npm install && npm run build",
-  "outputDirectory": "frontend/resume/dist",
-  "framework": "vite",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend/server.js"
+      "destination": "/api/index.js"
     },
     {
       "source": "/uploads/(.*)",
-      "destination": "/backend/server.js"
+      "destination": "/api/index.js"
     },
     {
       "source": "/(.*)",
