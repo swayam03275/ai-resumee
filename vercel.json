@@ -9,7 +9,7 @@
       "src": "frontend/resume/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/resume/dist"
+        "distDir": "dist"
       }
     }
   ],
