@@ -508,6 +508,7 @@ ${JSON.stringify(resumeData)}
 
   const handleAiReview = async () => {
     setIsLoading(true);
+    setAiData(null);
     setOpenPreviewModal(true);
     try {
       const data = await generateWithAI(Prompt.contents);
@@ -515,25 +516,24 @@ ${JSON.stringify(resumeData)}
       const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
       if (aiText) {
-        if (aiText) {
-          try {
-            const cleaned = aiText
-              .replace(/```json/g, "")
-              .replace(/```/g, "")
-              .trim();
-            const parsed = JSON.parse(cleaned);
-            setAiData(parsed);
-            setIsLoading(false);
-          } catch (e) {
-            console.error("Failed to parse AI response as JSON:", aiText, e);
-            setAiData(null);
-          }
+        try {
+          const cleaned = aiText
+            .replace(/```json/g, "")
+            .replace(/```/g, "")
+            .trim();
+          const parsed = JSON.parse(cleaned);
+          setAiData(parsed);
+        } catch (e) {
+          console.error("Failed to parse AI response as JSON:", aiText, e);
+          setAiData(null);
         }
       } else {
         console.error("AI response format unexpected:", data);
       }
     } catch (error) {
-      console.error("Error generating summary:", error);
+      console.error("Error generating AI review:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
   console.log(aiData);
@@ -561,15 +561,15 @@ ${JSON.stringify(resumeData)}
               <span className="hidden md:block">Delete</span>
             </button>
 
-            <button
-              className="btn-small-light"
-              onClick={() => setOpenPreviewModal(true)}
-            >
+            <button className="btn-small-light" onClick={handleAiReview}>
               <LuBrain className="text-[16px]" />
               <span className="hidden md:block">Get AI Review</span>
             </button>
 
-            <button className="btn-small-light " onClick={handleAiReview}>
+            <button
+              className="btn-small-light "
+              onClick={() => setOpenPreviewModal(true)}
+            >
               <LuDownload className="text-[16px]" />
               <span className="hidden md:block">Preview and download</span>
             </button>
