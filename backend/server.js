@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./routes/authRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use(cookieParser());
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/resume", resumeRoutes);
+app.use("/api/ai", aiRoutes);
 
 //serve upload folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

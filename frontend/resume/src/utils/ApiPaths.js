@@ -6,6 +6,10 @@ export const BASE_URL =
 //utils/apiPath.js
 
 export const API_PATHS = {
+  AI: {
+    GENERATE: "/api/ai/generate",
+  },
+
   AUTH: {
     REGISTER: "/api/auth/register", //signup
     LOGIN: "/api/auth/login", //authenticate user and return jwt token
