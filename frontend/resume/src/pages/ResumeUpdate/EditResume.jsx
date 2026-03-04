@@ -19,7 +19,7 @@ import { dataURLtoFile, fixTailwindColors } from '../../utils/helper';
 import { Toaster, toast } from "react-hot-toast"
 import Modal from '../../componets/Modal';
 import ThemeSelector from './ThemeSelector';
-import { URL } from '../../AI/AI';
+import { generateWithAI } from '../../AI/AI';
 import { AiOutlineLoading } from "react-icons/ai";
 
 const EditResume = () => {
@@ -498,15 +498,7 @@ ${JSON.stringify(resumeData)}
     setIsLoading(true)
     setOpenPreviewModal(true)
     try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(Prompt)
-      });
-
-      const data = await response.json();
+      const data = await generateWithAI(Prompt.contents);
 
       const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
