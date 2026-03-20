@@ -34,8 +34,11 @@ axiosInstance.interceptors.response.use(
     //handle common error globally
     if (error.response) {
       if (error.response.status === 401) {
-        //Redirect to login page
-        window.location.href = "/";
+        // Avoid hard redirect loops right after signup/login; let pages handle auth errors.
+        const hasToken = Boolean(localStorage.getItem("token"));
+        if (!hasToken) {
+          window.location.href = "/";
+        }
       } else if (error.response.status === 500) {
         console.error("server error pls try again later.");
       }
